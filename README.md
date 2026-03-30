@@ -2,4 +2,5 @@
 ## Данный файл создан для суммирования результатов после лабораторных работ, будет дополняться после сдачи каждой.
 
 Лабораторные работы:
-- [Лабораторная работа №1](https://github.com/knoksss/AandSD/tree/main/lab1_trees)
+- [Лабораторная работа №1](https://github.com/knoksss/Python_labs/tree/main/src1)
+- [Лабораторная работа №2](https://github.com/knoksss/Python_labs/tree/main/src2)

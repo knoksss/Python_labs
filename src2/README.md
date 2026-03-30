@@ -72,6 +72,7 @@ python -m pytest tests/tests.py -v
 ```bash
 pytest tests/tests.py -v --cov=src2 --cov-report=term-missing
 ```
+```
 Name                  Stmts   Miss  Cover   Missing
 ---------------------------------------------------
 __init__.py               1      0   100%
