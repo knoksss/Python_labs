@@ -169,6 +169,6 @@ TOTAL                       671     19    97%
 Программа готова к использованию, легко расширяется за счёт добавления новых источников задач, типов обработчиков и поддерживает как синхронную работу с очередью, так и асинхронную обработку.
 
 **Лабораторные работы, демонстирующие ход разработки приложения:**
-- [Лабораторная работа №1](https://github.com/knoksss/Python_labs/tree/main/src1)
-- [Лабораторная работа №2](https://github.com/knoksss/Python_labs/tree/main/src2)
-- [Лабораторная работа №3](https://github.com/knoksss/Python_labs/tree/main/src3)
+- [Лабораторная работа №1](https://github.com/knoksss/Python_labs/tree/main/progress_of_the_work/src1)
+- [Лабораторная работа №2](https://github.com/knoksss/Python_labs/tree/main/progress_of_the_work/src2)
+- [Лабораторная работа №3](https://github.com/knoksss/Python_labs/tree/main/progress_of_the_work/src3)
