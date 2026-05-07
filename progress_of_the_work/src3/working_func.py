@@ -1,11 +1,11 @@
-from src2.sources import FileSource, ApiSource, GeneratorSource
-from src2.tasks.task import TaskSource
+from src3.sources import FileSource, ApiSource, GeneratorSource
+from src3.tasks.protocol import TaskSource
 
 
 # функция для создания источника задач, которая сначала проверяет
 # является ли этот класс источником задач или же нет
 def create_source(source_class, *args, **kwargs) -> TaskSource|None:
-    if issubclass(source_class, TaskSource):
+    if hasattr(source_class, 'get_tasks'):
         print(f"Класс {source_class.__name__} подходит под протокол, создаем экземпляр")
         return source_class(*args, **kwargs)
     else:
@@ -21,7 +21,7 @@ def print_tasks(source_class: TaskSource) -> None:
 
     tasks = source_class.get_tasks() # если ошибки не последовало, то пользуемся методом get_tasks()
     for task in tasks:
-        print(f"[{task.id}] {task.payload}")
+        print(f"[{task.id}] {task.description} {task.priority}")
 
 
 

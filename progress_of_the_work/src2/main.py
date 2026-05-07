@@ -1,9 +1,8 @@
 from sys import stdin
-from src2.tasks import TaskSource
-from src2.working_funcs import create_source, print_tasks
+from src2.tasks.protocol import TaskSource
+from src2.working_func import create_source, print_tasks
 from src2.sources import FileSource, ApiSource, GeneratorSource
 from src2.logging_func import logging_func
-
 
 def main() -> None:
     # выводим список команд, котрорыми может воспользоваться пользователь

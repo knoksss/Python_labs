@@ -1,5 +1,11 @@
-from src3.tasks.task import Task
+from src2.tasks.task import Task
 import random
+import sys
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 
 # API-заглушка, как источник задач
@@ -8,8 +14,8 @@ class ApiSource:
     # данные задачи
     def get_tasks(self) -> list[Task]:
         return [
-            Task(id=1, payload = {"something": 1}),
-            Task(id=2, payload = {"something": 2})
+            Task(1, "something", 1),
+            Task(2, "something", 3)
         ]
 
 
@@ -26,10 +32,10 @@ class FileSource:
         tasks = [] # пустой список, в который записываются задачи
         try:
             with open(self.filename, 'r', encoding='utf-8') as file:
-                for line_number, line in enumerate(file, 1):
+                for line_number, line, priority in enumerate(file, 1):
                     line = line.strip()
                     if line:
-                        tasks.append(Task(line_number, {"text": line}))
+                        tasks.append(Task(line_number, {"text": line}, priority))
         except FileNotFoundError:
             print(f"Файл {self.filename} не найден")
             return []
@@ -45,9 +51,7 @@ class GeneratorSource:
         # создаёт 5 рандомных задачи, при помощи библиотеки random
         for i in range(5):
             task_id = random.randint(1, 100)
-            task_data = {
-                "value": random.randint(1, 100),
-                "text": f"task_{random.choice(['A', 'B', 'C'])}"
-            }
-            tasks.append(Task(task_id, task_data)) # добавляет задачу в список задач
+            task_data = random.choice(['A', 'B', 'C'])
+            pr = random.randint(1, 5)
+            tasks.append(Task(task_id, task_data, pr)) # добавляет задачу в список задач
         return tasks

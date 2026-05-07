@@ -1,7 +1,7 @@
 from datetime import datetime
 from src2.errors import TaskStatusError
 from src2.user_descriptors import DescriptionDescriptor, PriorityDescriptor, StatusDescriptor
-
+from typing import Protocol, runtime_checkable
 
 class Task:
 
@@ -46,3 +46,8 @@ class Task:
         return (f"id: {self._id}; description: '{self.description}'; "
                 f"priority: {self.priority}; status: '{self.status}'; "
                 f"creation time: {self._creation_time}")
+    
+@runtime_checkable
+class TaskSource(Protocol):
+    def get_tasks(self) -> list[Task]:
+        ...

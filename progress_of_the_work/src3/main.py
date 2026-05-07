@@ -1,9 +1,9 @@
 from sys import stdin
-from src2.tasks import TaskSource
-from src2.working_funcs import create_source, print_tasks
-from src2.sources import FileSource, ApiSource, GeneratorSource
-from src2.logging_func import logging_func
-
+from src3.tasks.protocol import TaskSource
+from src3.working_func import create_source, print_tasks
+from src3.sources import FileSource, ApiSource, GeneratorSource
+from src3.logging_func import logging_func
+from src3.task_queue import TaskQueue
 
 def main() -> None:
     # выводим список команд, котрорыми может воспользоваться пользователь
@@ -12,6 +12,7 @@ def main() -> None:
           '2. Получить задачи через API(исп. 2)\n'
           '3. Получить задачи с помощью генератора(исп. 3)\n'
           '4. Проверить работу контракта(исп. 4)\n'
+          '5. Работа с очередью (фильтрация и обработка)\n'
           'Для выхода напишите: "стоп!"')
     
     # принимаем команды из входного потока
@@ -55,6 +56,23 @@ def main() -> None:
                 for cls in [FileSource, GeneratorSource, ApiSource]:
                     result = issubclass(cls, TaskSource)
                     print(f"  {cls.__name__}: {result}")
+
+            elif cmd == '5':
+                logging_func("Демонстрация работы с TaskQueue")
+                source = create_source(ApiSource)
+                queue = TaskQueue(source.get_tasks())
+                
+                print(f"\nВсего задач в очереди: {len(queue)}")
+
+                print("\nВывод только новых задач:")
+                new_tasks = queue.filter(status="new")
+                for t in new_tasks:
+                    print(f"[Фильтр] {t}")
+
+                print("\nДелаем описание задачи в верхнем регистре:")
+                descriptions = queue.process(lambda t: t.description.upper())
+                for desc in descriptions:
+                    print(f"[Обработка] {desc}")
                     
             else:
                 # если была введена неверная комана, то также логируем и выводим сообщение
